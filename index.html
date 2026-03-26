@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pour toi ❤️</title>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      background-color: #ffe6f0;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ff4d88;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    #loveButton {
+      padding: 15px;
+      font-size: 18px;
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+
+    #messages {
+      margin-top: 100px;
+      font-size: 22px;
+      color: #cc0066;
+      min-height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Joyeux anniversaire ❤️</h1>
+  <p>Je te souhaite une super journée ma chérie !!!</p>
+
+<button id="loveButton" onclick="nextMessage()">Clique ici ❤️</button>
+
+  <div id="messages"></div>
+
+  <script>
+  let messages = [
+    "Je t’aime plus que tout ❤️",
+    "Tu rends ma vie meilleure chaque jour 💕",
+    "Je suis tellement chanceux de t’avoir 🥰",
+    "19 ans et toujours aussi incroyable 😍",
+    "Je veux encore plein de moments avec toi 💖"
+  ];
+
+  let index = 0;
+
+  function nextMessage() {
+    moveButton();
+
+    let container = document.getElementById("messages");
+
+    if (index < messages.length) {
+      typeText(messages[index], container);
+      index++;
+    } else {
+      // Message final quand tout est affiché
+      let p = document.createElement("p");
+      p.innerHTML = "Je t’aime infiniment ❤️";
+      container.appendChild(p);
+    }
+  }
+
+  function moveButton() {
+    let button = document.getElementById("loveButton");
+
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+  }
+
+  function typeText(text, container) {
+    let i = 0;
+    let p = document.createElement("p");
+    container.appendChild(p);
+
+    let typing = setInterval(() => {
+      if (i < text.length) {
+        p.innerHTML += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(typing);
+      }
+    }, 50);
+  }
+</script>
+
+
+</body>
+</html>
