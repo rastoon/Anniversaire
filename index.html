@@ -8,38 +8,37 @@
       text-align: center;
       font-family: Arial;
       background-color: #ffe6f0;
-      overflow-y: auto;
-      padding-bottom: 200px;
+      margin: 0;
     }
 
     h1 {
       color: #ff4d88;
+      margin-top: 40px;
     }
 
     p {
-      font-size: 20px;
+      font-size: 22px;
     }
 
     #loveButton {
       padding: 15px;
       font-size: 18px;
-      position: absolute;
+      position: fixed;
       left: 50%;
-      top: 60%;
+      top: 70%;
       transform: translate(-50%, -50%);
       cursor: pointer;
       border-radius: 10px;
       border: none;
       background-color: #ff4d88;
       color: white;
-      z-index: 10;
     }
 
     #messages {
-      margin-top: 120px;
-      font-size: 22px;
+      margin-top: 100px;
+      font-size: 28px;
       color: #cc0066;
-      min-height: 200px;
+      min-height: 100px;
     }
   </style>
 </head>
@@ -82,13 +81,10 @@
     function nextMessage() {
       moveButton();
 
-      let container = document.getElementById("messages");
-
       if (index < messages.length) {
-        typeText(messages[index], container);
+        typeText(messages[index]);
         index++;
 
-        // Change le texte du bouton à la fin
         if (index === messages.length) {
           document.getElementById("loveButton").innerHTML = "Encore ❤️";
         }
@@ -108,7 +104,11 @@
       button.style.top = y + "px";
     }
 
-    function typeText(text, container) {
+    function typeText(text) {
+      let container = document.getElementById("messages");
+
+      container.innerHTML = ""; // remplace le message
+
       let i = 0;
       let p = document.createElement("p");
       container.appendChild(p);
@@ -125,6 +125,8 @@
 
     function finalMessage() {
       let container = document.getElementById("messages");
+
+      container.innerHTML = "";
 
       let big = document.createElement("h2");
       big.innerHTML = "Je t’aime infiniment ❤️";
