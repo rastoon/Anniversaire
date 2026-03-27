@@ -27,94 +27,110 @@
       top: 60%;
       transform: translate(-50%, -50%);
       cursor: pointer;
+      border-radius: 10px;
+      border: none;
+      background-color: #ff4d88;
+      color: white;
     }
 
     #messages {
-      margin-top: 100px;
+      margin-top: 120px;
       font-size: 22px;
       color: #cc0066;
-      min-height: 100px;
+      min-height: 200px;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Joyeux anniversaire ❤️</h1>
-  <p>Je te souhaite une super journée ma chérie !!!</p>
+  <h1>Joyeux anniversaire mon amour ❤️</h1>
+  <p>Je te souhaite une journée incroyable pour tes 19 ans 💕</p>
 
-<button id="loveButton" onclick="nextMessage()">Clique ici ❤️</button>
+  <button id="loveButton" onclick="nextMessage()">Clique ici ❤️</button>
 
   <div id="messages"></div>
 
   <script>
-  let messages = [
-  "Je t’aime plus que tout ❤️",
-  "Depuis que tu es dans ma vie, tout est plus beau 💕",
-  "Ton sourire est la meilleure chose qui me soit arrivée 😍",
-  "Je suis tellement chanceux de t’avoir 🥰",
-  "Chaque moment avec toi est précieux 💖",
-  "Tu rends mes journées meilleures rien qu’en étant là ☀️",
-  "Je ne me lasse jamais de toi ❤️",
-  "Tu es incroyable, vraiment 😘",
-  "19 ans aujourd’hui… et toujours aussi parfaite 🎂",
-  "J’aime tout chez toi, même les petits détails 💕",
-  "Je pense à toi tout le temps 🥺",
-  "Avec toi, tout est plus simple et plus beau 💫",
-  "Tu es mon bonheur au quotidien ❤️",
-  "Je veux encore plein de souvenirs avec toi 📸",
-  "Merci d’être toi, tout simplement 💖",
-  "Je suis fier d’être avec toi 🥰",
-  "Tu comptes énormément pour moi ❤️",
-  "Et ce n’est que le début de notre histoire 💕",
-  "Je t’aimerai encore plus demain 😘"
-];
+    let messages = [
+      "Je t’aime plus que tout ❤️",
+      "Depuis que tu es dans ma vie, tout est plus beau 💕",
+      "Ton sourire est la meilleure chose qui me soit arrivée 😍",
+      "Je suis tellement chanceux de t’avoir 🥰",
+      "Chaque moment avec toi est précieux 💖",
+      "Tu rends mes journées meilleures rien qu’en étant là ☀️",
+      "Je ne me lasse jamais de toi ❤️",
+      "Tu es incroyable, vraiment 😘",
+      "19 ans aujourd’hui… et toujours aussi parfaite 🎂",
+      "J’aime tout chez toi, même les petits détails 💕",
+      "Je pense à toi tout le temps 🥺",
+      "Avec toi, tout est plus simple et plus beau 💫",
+      "Tu es mon bonheur au quotidien ❤️",
+      "Je veux encore plein de souvenirs avec toi 📸",
+      "Merci d’être toi, tout simplement 💖",
+      "Je suis fier d’être avec toi 🥰",
+      "Tu comptes énormément pour moi ❤️",
+      "Et ce n’est que le début de notre histoire 💕",
+      "Je t’aimerai encore plus demain 😘",
+      "Joyeux anniversaire mon amour ❤️"
+    ];
 
+    let index = 0;
 
-  let index = 0;
+    function nextMessage() {
+      moveButton();
 
-  function nextMessage() {
-    moveButton();
+      let container = document.getElementById("messages");
 
-    let container = document.getElementById("messages");
+      if (index < messages.length) {
+        typeText(messages[index], container);
+        index++;
 
-    if (index < messages.length) {
-      typeText(messages[index], container);
-      index++;
-    } else {
-      // Message final quand tout est affiché
-      let p = document.createElement("p");
-      p.innerHTML = "Je t’aime infiniment ❤️";
-      container.appendChild(p);
-    }
-  }
+        // Change le texte du bouton à la fin
+        if (index === messages.length) {
+          document.getElementById("loveButton").innerHTML = "Encore ❤️";
+        }
 
-  function moveButton() {
-    let button = document.getElementById("loveButton");
-
-    let x = Math.random() * window.innerWidth;
-    let y = Math.random() * window.innerHeight;
-
-    button.style.left = x + "px";
-    button.style.top = y + "px";
-  }
-
-  function typeText(text, container) {
-    let i = 0;
-    let p = document.createElement("p");
-    container.appendChild(p);
-
-    let typing = setInterval(() => {
-      if (i < text.length) {
-        p.innerHTML += text.charAt(i);
-        i++;
       } else {
-        clearInterval(typing);
+        finalMessage();
       }
-    }, 50);
-  }
-</script>
+    }
 
+    function moveButton() {
+      let button = document.getElementById("loveButton");
+
+      let x = Math.random() * (window.innerWidth - 100);
+      let y = Math.random() * (window.innerHeight - 50);
+
+      button.style.left = x + "px";
+      button.style.top = y + "px";
+    }
+
+    function typeText(text, container) {
+      let i = 0;
+      let p = document.createElement("p");
+      container.appendChild(p);
+
+      let typing = setInterval(() => {
+        if (i < text.length) {
+          p.innerHTML += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typing);
+        }
+      }, 40);
+    }
+
+    function finalMessage() {
+      let container = document.getElementById("messages");
+
+      let big = document.createElement("h2");
+      big.innerHTML = "Je t’aime infiniment ❤️";
+      big.style.color = "#ff1a75";
+
+      container.appendChild(big);
+    }
+  </script>
 
 </body>
 </html>
