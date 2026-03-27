@@ -9,6 +9,7 @@
       font-family: Arial;
       background-color: #ffe6f0;
       margin: 0;
+      padding-bottom: 200px;
     }
 
     h1 {
@@ -25,20 +26,22 @@
       font-size: 18px;
       position: fixed;
       left: 50%;
-      top: 70%;
+      top: 85%;
       transform: translate(-50%, -50%);
       cursor: pointer;
       border-radius: 10px;
       border: none;
       background-color: #ff4d88;
       color: white;
+      z-index: 10;
     }
 
     #messages {
       margin-top: 100px;
-      font-size: 28px;
+      font-size: 26px;
       color: #cc0066;
-      min-height: 100px;
+      min-height: 200px;
+      padding: 0 20px;
     }
   </style>
 </head>
@@ -81,8 +84,10 @@
     function nextMessage() {
       moveButton();
 
+      let container = document.getElementById("messages");
+
       if (index < messages.length) {
-        typeText(messages[index]);
+        typeText(messages[index], container);
         index++;
 
         if (index === messages.length) {
@@ -104,11 +109,7 @@
       button.style.top = y + "px";
     }
 
-    function typeText(text) {
-      let container = document.getElementById("messages");
-
-      container.innerHTML = ""; // remplace le message
-
+    function typeText(text, container) {
       let i = 0;
       let p = document.createElement("p");
       container.appendChild(p);
@@ -121,18 +122,23 @@
           clearInterval(typing);
         }
       }, 40);
+
+      // 🔥 scroll automatique vers le bas
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 200);
     }
 
     function finalMessage() {
       let container = document.getElementById("messages");
-
-      container.innerHTML = "";
 
       let big = document.createElement("h2");
       big.innerHTML = "Je t’aime infiniment ❤️";
       big.style.color = "#ff1a75";
 
       container.appendChild(big);
+
+      window.scrollTo(0, document.body.scrollHeight);
     }
   </script>
 
